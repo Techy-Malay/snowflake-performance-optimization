@@ -1,0 +1,22 @@
+USE DATABASE OPTIMIZATION_PROJECT;
+
+USE SCHEMA OPT_SCHEMA;
+
+
+-- Baseline deterministic query for result cache validation
+
+SELECT
+    O_ORDERSTATUS,
+    COUNT(*) AS order_count
+FROM ORDERS
+WHERE O_ORDERDATE BETWEEN '1995-01-01' AND '1995-12-31'
+GROUP BY O_ORDERSTATUS
+--ORDER BY O_ORDERSTATUS
+ORDER BY O_ORDERSTATUS DESC;
+;
+
+
+--Run 1 (cold):
+-- Execution time:1.2 s
+-- Bytes scanned:
+-- Query ID: 01c20f9f-0307-a052-001a-7777001ba292
